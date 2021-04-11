@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
+    {% if meta.description %}
+        <meta name="description" content="{{ meta.description|striptags }}" />
+    {% endif %}
+    {% if meta.robots %}
+        <meta name="robots" content="{{ meta.robots }}" />
+    {% endif %}
+
+    {% if current_page %}
+        <link rel="canonical" href="{{ current_page.url }}" />
+    {% endif %}
+
+    <link rel="stylesheet" href="{{ theme_url }}/wer.css" type="text/css" />
+    <style>
+    *{
+        --deco-color:{{ pages["_meta"].meta.color1 }};
+        --back-color:{{ pages["_meta"].meta.color2 }};
+        --main-back-color:{{ pages["_meta"].meta.color3 }};
+    }
+    </style>
+</head>
+<body{% if config.theme_config.widescreen %} class="widescreen"{% endif %}>
+
+    <div id="header" role="banner">
+        <div class="container">
+            <div id="title"{{ pages["_meta"].meta.tagline ? ' class="tagline"' }}>
+                    <h1>{{ site_title }}</h1>
+                    {{ pages["_meta"].meta.tagline|markdown }}
+            </div>
+            <div id="nav" role="navigation" tabindex="-1">
+                <ul>
+                    {% for page in pages(depthOffset=-1) if page.title and not page.hidden %}
+                        <li{% if page.id == current_page.id %} class="active"{% endif %}>
+                            <a href="{{ page.url }}">{{ page.title }}</a> 
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="main" role="main">
+        <div class="container">
+            {{ content }}
+        </div>
+    </div>
+
+
+     {% if pages["_meta"].meta.footerCenter or  pages["_meta"].meta.footerLeft or pages["_meta"].meta.footerRight %}
+                <div id="footer">
+
+		<div id="footerLeft">
+		{{ pages["_meta"].meta.footerLeft }}
+		</div>
+		
+		<div id="footerCenter">
+		{{ pages["_meta"].meta.footerCenter }}
+		</div>
+		
+		<div id="footerRight">
+		{{ pages["_meta"].meta.footerRight }}
+		</div>
+
+                </div>
+
+    {% endif %}
+
+<script>
+
+  /**
+   * Generate page table of contents
+   *
+   * Get all H2 elements and render them in a list
+  **/
+  function generatePageTOC() {
+    //var tocContainer = document.getElementById('page-toc-container');
+    var tocContainer = document.getElementsByClassName('active');
+    var maintitles = document.getElementsByTagName('h1');
+    if(maintitles.length >0)
+    {
+    var titleList = document.createElement('ul');
+    titleList.className='subtitle';
+    tocContainer[0].appendChild(titleList);
+    }
+    //document.querySelectorAll('.article h1').forEach(function(el, index) {
+    document.querySelectorAll('#main h1').forEach(function(el, index) {
+       el.insertAdjacentHTML('beforebegin', '<i id="page-toc-'+index+'" class="page-toc-scroll-marker">TOC marker</i>'); 
+      var newTocNavItem = document.createElement('li');
+      var newTocNavItemLink = document.createElement('a');
+      var newTocNavItemText = document.createTextNode(el.textContent);
+
+      newTocNavItemLink.setAttribute('href', '#page-toc-' + index);
+      newTocNavItemLink.appendChild(newTocNavItemText);
+      newTocNavItem.appendChild(newTocNavItemLink);
+      titleList.appendChild(newTocNavItem);
+    });
+  }
+  generatePageTOC();
+
+</script>
+
+
+</body>
+</html>

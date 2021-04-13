@@ -23,7 +23,7 @@ theme: 3colors
 ```yaml
 site_title: 3 colors
 ```
-+ tagline : your tag line is written in the `_metal.md` file of your `content` folder. It will be shown as a H2 tag in your header.
++ tagline : your tag line is written in the `_meta.md` file of your `content` folder. It will be shown as a H2 tag in your header.
 ```yaml
 Tagline: Choose 3 colors <br> Show your H1 in menu
 ```

@@ -22,6 +22,7 @@ theme: 3colors
 + Title : the site title is written in the `config.yml' file and will we be shown as a H1 tag in your header.
 ```yaml
 site_title: 3 colors
+```
 + tagline : your tag line is written in the `_metal.md` file of your `content` folder. It will be shown as a H2 tag in your header.
 ```yaml
 Tagline: Choose 3 colors <br> Show your H1 in menu

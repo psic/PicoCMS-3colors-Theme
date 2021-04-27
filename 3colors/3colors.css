@@ -1,4 +1,4 @@
-*{
+:root{
 	//border: 1px solid red;
 	
 	/**
@@ -30,7 +30,7 @@
 #title p{
 
 	font-size: 20px !important;
-	text-align:left !important;
+//	text-align:left !important;
 	padding-left:20px!important;
 }
 #header{
@@ -41,10 +41,17 @@
 }
 
 
+html {
+	  height: 100%;
+  }
+
 body
 {
 	margin-top:0;
 	background-color:var(--back-color);
+	min-height:100vh;
+	display:flex;
+	flex-direction:column;
 }
 #main{
 	background-color: var(--main-back-color);
@@ -54,6 +61,8 @@ body
 	width: 82%;
 	padding: 20px;
 	text-align: justify;
+//	overflow: hidden;
+	flex-grow:1;
 }
 #header{
 
@@ -66,6 +75,7 @@ body
 	padding-bottom:20px;
 	padding-left:20px;
 	padding-right:20px;
+	margin-top:5px;
 }
 #title h1{
 	font-family: Serif;
@@ -206,6 +216,12 @@ table {
 #footer{
 	padding-top:20px;
 	border-top:4px solid var(--deco-color);
+	position:relative;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	margin-bottom:5px;
+	max-height:50px;
 }
 
 #footer div{
